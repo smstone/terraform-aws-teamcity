@@ -16,13 +16,13 @@ resource "aws_s3_bucket" "artifact" {
 
 resource "aws_s3_bucket_acl" "artifact" {
   count = var.artifact_bucket_enabled ? 1 : 0
-  bucket = aws_s3_bucket.artifact.bucket
+  bucket = aws_s3_bucket[0].artifact.bucket
   acl    = "log-delivery-write"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "artifact" {
   count = var.artifact_bucket_enabled ? 1 : 0
-  bucket = aws_s3_bucket.artifact.bucket
+  bucket = aws_s3_bucket[0].artifact.bucket
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm     = "aws:kms"
@@ -34,7 +34,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "artifact" {
 
 resource "aws_s3_bucket_versioning" "artifact" {
   count = var.artifact_bucket_enabled ? 1 : 0
-  bucket = aws_s3_bucket.artifact.id
+  bucket = aws_s3_bucket[0].artifact.id
   versioning_configuration {
     status     = "Enabled"
     mfa_delete = "Disabled"
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_versioning" "artifact" {
 
 resource "aws_s3_bucket_public_access_block" "artifacts" {
   count = var.artifact_bucket_enabled ? 1 : 0
-  bucket = aws_s3_bucket.artifact.id
+  bucket = aws_s3_bucket[0].artifact.id
 
   block_public_acls       = true
   block_public_policy     = true
