@@ -11,7 +11,7 @@ output "teamcity_db" {
 }
 
 output "artifact-bucket" {
-  value = var.artifact_bucket_enabled ? aws_s3_bucket[0].artifact : ""
+  value = var.artifact_bucket_enabled ? aws_s3_bucket.artifact[0] : ""
 }
 
 output "dbpassword" {
