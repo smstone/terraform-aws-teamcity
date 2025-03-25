@@ -79,3 +79,9 @@ variable "associate_public_ip_address" {
 variable "kms_key" {
 
 }
+
+variable "artifact_bucket_enabled" {
+  type    = bool
+  default = false
+}
+

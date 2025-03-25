@@ -1,5 +1,6 @@
 # tfsec:ignore:AWS002
 resource "aws_s3_bucket" "artifact" {
+  count = var.artifact_bucket_enabled ? 1 : 0
   # checkov:skip=CKV_AWS_18:Ensure the S3 bucket has access logging enabled
   # checkov:skip=CKV2_AWS_41: Skip access logging
   # checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
@@ -14,11 +15,13 @@ resource "aws_s3_bucket" "artifact" {
 
 
 resource "aws_s3_bucket_acl" "artifact" {
+  count = var.artifact_bucket_enabled ? 1 : 0
   bucket = aws_s3_bucket.artifact.bucket
   acl    = "log-delivery-write"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "artifact" {
+  count = var.artifact_bucket_enabled ? 1 : 0
   bucket = aws_s3_bucket.artifact.bucket
   rule {
     apply_server_side_encryption_by_default {
@@ -30,6 +33,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "artifact" {
 }
 
 resource "aws_s3_bucket_versioning" "artifact" {
+  count = var.artifact_bucket_enabled ? 1 : 0
   bucket = aws_s3_bucket.artifact.id
   versioning_configuration {
     status     = "Enabled"
@@ -40,6 +44,7 @@ resource "aws_s3_bucket_versioning" "artifact" {
 
 
 resource "aws_s3_bucket_public_access_block" "artifacts" {
+  count = var.artifact_bucket_enabled ? 1 : 0
   bucket = aws_s3_bucket.artifact.id
 
   block_public_acls       = true
