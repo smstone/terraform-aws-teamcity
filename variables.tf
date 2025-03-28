@@ -73,5 +73,4 @@ variable "alb_name" {
 variable "alb_acm_arn" {
   type        = string
   description = "ALB ACM ARN"
-  default      = null
 }
