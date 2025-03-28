@@ -3,5 +3,5 @@ output "server" {
 }
 
 output "alb" {
-  value = aws_alb.alb
+  value = aws_lb.alb
 }
