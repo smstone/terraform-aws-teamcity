@@ -16,11 +16,6 @@ resource "aws_iam_role" "teamcity-server" {
 HERE
 }
 
-resource "aws_iam_role_policy_attachment" "ssm-attach" {
-  role       = aws_iam_role.teamcity-server.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
-}
-
 resource "aws_iam_instance_profile" "teamcity" {
   name = "teamcity-server"
   role = aws_iam_role.teamcity-server.name
