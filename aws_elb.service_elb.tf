@@ -1,7 +1,7 @@
 # tfsec:ignore:AWS005
 resource "aws_elb" "service_elb" {
   #checkov:skip=CKV_AWS_92: "Ensure the ELB has access logging enabled"
-  subnets         = var.public_subnets
+  subnets         = var.elb_internal ? var.private_subnets : var.public_subnets
   security_groups = [aws_security_group.elb.id]
   instances       = [aws_instance.teamcity.id]
   internal        = var.elb_internal
