@@ -10,7 +10,7 @@ resource "aws_db_instance" "teamcity" {
   monitoring_interval             = var.monitoring_interval
   monitoring_role_arn             = var.monitoring_role_arn
   db_name                         = "teamcity"
-  password                        = random_string.dbpassword.result
+  password                        = random_string.dbpassword[0].result
   storage_encrypted               = true
   username                        = "teamcity"
   enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
