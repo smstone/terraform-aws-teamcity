@@ -46,41 +46,13 @@ variable "public_subnets" {
   type = list(any)
 }
 
-variable "need_db" {
-  description = "Only create db when set"
-  default     = 0
-  validation {
-    condition     = contains([0, 1], var.need_db)
-    error_message = "This is used as a switch, valid values are only 0 and 1."
-  }
-}
-
 variable "alb_allowlist" {
   type        = list(any)
   description = "The allow list"
   default     = ["0.0.0.0/0"]
 }
 
-variable "listeners" {
-  type = list(object({ instance_port = number,
-    instance_protocol  = string,
-    lb_port            = number,
-    lb_protocol        = string,
-    ssl_certificate_id = string
-  }))
-  description = "Details for SSL redirect"
-}
-
 variable "associate_public_ip_address" {
-  type    = bool
-  default = false
-}
-
-variable "kms_key" {
-
-}
-
-variable "artifact_bucket_enabled" {
   type    = bool
   default = false
 }
