@@ -4,7 +4,7 @@ resource "aws_lb" "alb" {
   subnets            = var.alb_internal ? var.private_subnets : var.public_subnets
   security_groups    = [aws_security_group.alb.id]
 
-  tags = local.tags
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "alb_listener_80" {
@@ -59,5 +59,5 @@ resource "aws_lb_target_group" "alb_target_group" {
     create_before_destroy = true
   }
 
-  tags = local.tags
+  tags = var.tags
 }
