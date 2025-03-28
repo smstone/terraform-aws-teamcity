@@ -1,5 +1,6 @@
 resource "aws_iam_role" "teamcity-server" {
-  description        = "Allows EC2 instances to call AWS services on your behalf."
+  name = "teamcity-server-role"
+  description        = "TeamCity server IAM role, allows EC2 instances to call AWS services on your behalf."
   assume_role_policy = <<HERE
 {
   "Version": "2012-10-17",

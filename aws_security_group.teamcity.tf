@@ -1,5 +1,5 @@
 resource "aws_security_group" "teamcity" {
-  name        = "teamcity instance"
+  name        = "Teamcity instance security group"
   description = "Terraform security group"
   vpc_id      = var.vpc_id
 

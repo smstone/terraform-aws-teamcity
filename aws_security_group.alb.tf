@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb" {
-  name        = "teamcity_alb"
+  name        = "teamcity-alb-sg"
   vpc_id      = var.vpc_id
   description = "Protects ALB access"
 
