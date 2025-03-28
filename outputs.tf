@@ -15,9 +15,9 @@ output "artifact-bucket" {
 }
 
 output "dbpassword" {
-  value = var.need_db ? random_string.dbpassword[0].result : null
+  value = var.need_db == 1 ? random_string.dbpassword[0].result : null
 }
 
 output "password" {
-  value = var.need_db ? random_string.password[0].result : null
+  value = var.need_db == 1 ? random_string.password[0].result : null
 }
