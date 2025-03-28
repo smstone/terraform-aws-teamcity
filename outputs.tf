@@ -15,9 +15,9 @@ output "artifact-bucket" {
 }
 
 output "dbpassword" {
-  value = random_string.dbpassword.result
+  value = random_string.dbpassword[0].result
 }
 
 output "password" {
-  value = random_string.password.result
+  value = random_string.password[0].result
 }
