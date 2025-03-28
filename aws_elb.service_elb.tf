@@ -4,6 +4,7 @@ resource "aws_elb" "service_elb" {
   subnets         = var.public_subnets
   security_groups = [aws_security_group.elb.id]
   instances       = [aws_instance.teamcity.id]
+  internal        = var.elb_internal
 
   dynamic "listener" {
     for_each = var.listeners

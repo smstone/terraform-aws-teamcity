@@ -85,3 +85,7 @@ variable "artifact_bucket_enabled" {
   default = false
 }
 
+variable "elb_internal" {
+  type    = bool
+  default = true
+}
