@@ -40,10 +40,12 @@ variable "allowlist" {
 
 variable "private_subnets" {
   type = list(any)
+  default = null
 }
 
 variable "public_subnets" {
   type = list(any)
+  default = null
 }
 
 variable "alb_allowlist" {
