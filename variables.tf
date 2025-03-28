@@ -27,9 +27,9 @@ variable "vpc_id" {
   }
 }
 
-variable "common_tags" {
+variable "tags" {
   type        = map(any)
-  description = "Implements the common_tags scheme"
+  description = "Implements the tags scheme"
 }
 
 variable "allowlist" {

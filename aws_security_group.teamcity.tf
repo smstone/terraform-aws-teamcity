@@ -49,5 +49,5 @@ resource "aws_security_group" "teamcity" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }

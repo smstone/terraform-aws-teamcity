@@ -30,5 +30,5 @@ EOF
     http_tokens = "required"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }
