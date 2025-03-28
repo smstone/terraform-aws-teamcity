@@ -94,4 +94,5 @@ variable "alb_internal" {
 variable "alb_acm_arn" {
   type        = string
   description = "ALB ACM ARN"
+  default      = null
 }
