@@ -43,6 +43,7 @@ resource "aws_lb_listener" "alb_listener_443" {
 }
 
 resource "aws_lb_target_group" "alb_target_group" {
+  name                 = "${var.alb_name}-target-group"
   deregistration_delay = 60
   port                 = 8111
   protocol             = "HTTP"
