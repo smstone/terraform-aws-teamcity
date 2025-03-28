@@ -64,6 +64,11 @@ variable "alb_internal" {
   default = true
 }
 
+variable "alb_name" {
+  type        = string
+  description = "ALB name"
+  default      = "team-city"
+}
 
 variable "alb_acm_arn" {
   type        = string
