@@ -2,8 +2,8 @@ output "server" {
   value = aws_instance.teamcity
 }
 
-output "elb" {
-  value = aws_elb.service_elb
+output "alb" {
+  value = aws_alb.service_alb
 }
 
 output "teamcity_db" {

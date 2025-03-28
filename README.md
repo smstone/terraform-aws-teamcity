@@ -62,7 +62,7 @@ Project: .
 
  Name                                                Monthly Qty  Unit         Monthly Cost
 
- module.teamcity.aws_elb.service_elb
+ module.teamcity.aws_alb.service_alb
  ├─ Classic load balancer                                    730  hours              $21.46
  └─ Data processed                                             0  GB                  $0.00
 
@@ -161,17 +161,16 @@ No modules.
 |------|------|
 | [aws_db_instance.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance) | resource |
 | [aws_db_subnet_group.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group) | resource |
-| [aws_elb.service_elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb) | resource |
+| [aws_alb.service_alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/alb) | resource |
 | [aws_iam_instance_profile.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_role.teamcity-server](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_instance.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_key_pair.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) | resource |
 | [aws_s3_bucket.artifact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_acl.artifact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
 | [aws_s3_bucket_public_access_block.artifacts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_server_side_encryption_configuration.artifact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
 | [aws_s3_bucket_versioning.artifact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
-| [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.rds](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.teamcity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [local_file.private_key_pem](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
@@ -191,7 +190,7 @@ No modules.
 | <a name="input_associate_public_ip_address"></a> [associate\_public\_ip\_address](#input\_associate\_public\_ip\_address) | n/a | `bool` | `false` | no |
 | <a name="input_backup_retention_period"></a> [backup\_retention\_period](#input\_backup\_retention\_period) | n/a | `number` | `14` | no |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Implements the common\_tags scheme | `map(any)` | n/a | yes |
-| <a name="input_elb-whitelist"></a> [elb-whitelist](#input\_elb-whitelist) | The allow list | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_alb_allowlist"></a> [alb_allowlist](#input\_alb_allowlist) | The allow list | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | MySQl Version | `string` | `"5.7.11"` | no |
 | <a name="input_instance_class"></a> [instance\_class](#input\_instance\_class) | Instance DB size | `string` | `"db.t2.small"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | THe instance type | `string` | n/a | yes |
@@ -204,7 +203,7 @@ No modules.
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The id for the vpc | `string` | n/a | yes |
-| <a name="input_whitelist"></a> [whitelist](#input\_whitelist) | The CIDRs that can have access to the instance | `list(any)` | <pre>[<br>  "10.0.0.0/16"<br>]</pre> | no |
+| <a name="input_allowlist"></a> [allowlist](#input\_allowlist) | The CIDRs that can have access to the instance | `list(any)` | <pre>[<br>  "10.0.0.0/16"<br>]</pre> | no |
 
 ## Outputs
 
@@ -212,7 +211,7 @@ No modules.
 |------|-------------|
 | <a name="output_artifact-bucket"></a> [artifact-bucket](#output\_artifact-bucket) | n/a |
 | <a name="output_dbpassword"></a> [dbpassword](#output\_dbpassword) | n/a |
-| <a name="output_elb"></a> [elb](#output\_elb) | n/a |
+| <a name="output_alb"></a> [alb](#output\_alb) | n/a |
 | <a name="output_password"></a> [password](#output\_password) | n/a |
 | <a name="output_server"></a> [server](#output\_server) | n/a |
 | <a name="output_teamcity_db"></a> [teamcity\_db](#output\_teamcity\_db) | n/a |

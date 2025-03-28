@@ -13,9 +13,9 @@ variable "instance_type" {
   description = "THe instance type"
 }
 
-variable "key_name" {
+variable "key_pair_name" {
   type        = string
-  description = "description"
+  description = "Name of key pair to use for instance."
 }
 
 variable "vpc_id" {
@@ -32,7 +32,7 @@ variable "common_tags" {
   description = "Implements the common_tags scheme"
 }
 
-variable "whitelist" {
+variable "allowlist" {
   description = "The CIDRs that can have access to the instance"
   type        = list(any)
   default     = ["10.0.0.0/16"]
@@ -55,7 +55,7 @@ variable "need_db" {
   }
 }
 
-variable "elb-whitelist" {
+variable "alb_allowlist" {
   type        = list(any)
   description = "The allow list"
   default     = ["0.0.0.0/0"]
@@ -85,7 +85,13 @@ variable "artifact_bucket_enabled" {
   default = false
 }
 
-variable "elb_internal" {
+variable "alb_internal" {
   type    = bool
   default = true
+}
+
+
+variable "alb_acm_arn" {
+  type        = string
+  description = "ALB ACM ARN"
 }
