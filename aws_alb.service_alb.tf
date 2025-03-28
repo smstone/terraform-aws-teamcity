@@ -63,3 +63,9 @@ resource "aws_lb_target_group" "alb_target_group" {
 
   tags = var.tags
 }
+
+resource "aws_lb_target_group_attachment" "instance" {
+  target_group_arn = aws_lb_target_group.alb_target_group.arn
+  target_id        = aws_instance.teamcity.id
+  port             = 8111
+}
