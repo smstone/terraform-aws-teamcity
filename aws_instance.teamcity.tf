@@ -24,9 +24,39 @@ resource "aws_instance" "teamcity" {
 
   user_data = <<EOF
 #! /bin/bash
+
+# Download TeamCity and move to /opt/
 sudo yum install git java-21-amazon-corretto.x86_64 -y
 curl -L https://download-cdn.jetbrains.com/teamcity/TeamCity-2025.03.tar.gz | tar zx
-TeamCity/bin/runAll.sh start
+mv TeamCity /opt/teamcity
+
+# User and group setup
+sudo useradd -r -m -s /bin/false teamcity
+sudo groupadd teamcity
+sudo usermod -aG teamcity teamcity
+sudo chown -R teamcity:teamcity /opt/teamcity
+
+cat > /etc/systemd/system/teamcity.service <<SYSTEMDEOF
+[Unit]
+Description=TeamCity Continuous Integration Server
+After=network.target
+
+[Service]
+Type=forking
+User=teamcity
+Group=teamcity
+ExecStart=/opt/teamcity/bin/teamcity-server.sh start
+ExecStop=/opt/teamcity/bin/teamcity-server.sh stop
+PIDFile=/opt/teamcity/logs/teamcity.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+SYSTEMDEOF
+
+sudo systemctl enable teamcity
+sudo systemctl start teamcity
+
 EOF
 
   lifecycle {
