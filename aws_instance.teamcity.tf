@@ -14,7 +14,7 @@ resource "aws_instance" "teamcity" {
 
   user_data = <<EOF
 #! /bin/bash
-sudo yum install java-1.8.0-amazon-corretto -y
+sudo yum install git java-21-amazon-corretto.x86_64 -y
 curl -L https://download-cdn.jetbrains.com/teamcity/TeamCity-2025.03.tar.gz | tar zx
 TeamCity/bin/runAll.sh start
 EOF
