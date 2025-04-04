@@ -13,6 +13,54 @@ variable "instance_type" {
   description = "THe instance type"
 }
 
+variable "volume_size" {
+  type        = number
+  default     = 200
+  description = "Volume size"
+}
+
+variable "volume_type" {
+  type        = string
+  default     = "gp2"
+  description = "Volume type"
+}
+
+variable "volume_delete_on_termination" {
+  type        = bool
+  default     = false
+  description = "Delete volume on termination"
+}
+
+variable "volume_encrypted" {
+  type        = bool
+  default     = true
+  description = "Encrypt volume"
+}
+
+variable "disable_api_termination" {
+  type        = bool
+  default     = true
+  description = "Disable ec2 termination via api"
+}
+
+variable "monitoring" {
+  type        = bool
+  default     = true
+  description = "EC2 instance monitoring"
+}
+
+variable "ebs_optimized" {
+  type        = bool
+  default     = true
+  description = "EBS optimized"
+}
+
+variable "disable_api_stop" {
+  type        = bool
+  default     = true
+  description = "Disable ec2 stop via api"
+}
+
 variable "key_pair_name" {
   type        = string
   description = "Name of key pair to use for instance."

@@ -2,8 +2,18 @@ resource "aws_instance" "teamcity" {
   # checkov:skip= CKV2_AWS_17: its bogus
   ami           = var.ami_id
   instance_type = var.instance_type
-  monitoring    = true
-  ebs_optimized = true
+
+  root_block_device {
+    volume_size           = var.volume_size
+    volume_type           = var.volume_type
+    delete_on_termination = var.volume_delete_on_termination
+    encrypted             = var.volume_encrypted
+  }
+
+  disable_api_termination = var.disable_api_termination
+  disable_api_stop        = var.disable_api_stop
+  monitoring              = var.monitoring
+  ebs_optimized           = var.ebs_optimized
 
   key_name               = var.key_pair_name
   subnet_id              = element(var.private_subnets, 0)
@@ -19,9 +29,6 @@ curl -L https://download-cdn.jetbrains.com/teamcity/TeamCity-2025.03.tar.gz | ta
 TeamCity/bin/runAll.sh start
 EOF
 
-  root_block_device {
-    encrypted = true
-  }
   lifecycle {
     ignore_changes = [user_data]
   }
