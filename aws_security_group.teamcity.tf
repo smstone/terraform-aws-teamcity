@@ -10,7 +10,7 @@ resource "aws_security_group" "teamcity" {
     protocol    = "tcp"
     description = "Agent port"
     # tfsec:ignore:AWS008
-    cidr_blocks = var.allowlist
+    cidr_blocks = var.instance_allowlist
   }
 
   ingress {
@@ -20,7 +20,7 @@ resource "aws_security_group" "teamcity" {
     description     = "ui"
     security_groups = [aws_security_group.alb.id]
     # tfsec:ignore:AWS008
-    cidr_blocks = var.allowlist
+    cidr_blocks = var.instance_allowlist
   }
 
   ingress {
@@ -29,7 +29,7 @@ resource "aws_security_group" "teamcity" {
     protocol    = "tcp"
     description = "SSH"
     # tfsec:ignore:AWS008
-    cidr_blocks = var.allowlist
+    cidr_blocks = var.instance_allowlist
   }
 
   ingress {
