@@ -80,10 +80,16 @@ variable "tags" {
   description = "Implements the tags scheme"
 }
 
-variable "instance_allowlist" {
+variable "instance_cidr_allowlist" {
   description = "The CIDRs that can have access to the instance"
   type        = list(any)
   default     = ["10.0.0.0/16"]
+}
+
+variable "instance_sg_allowlist" {
+  description = "The Security Groups that can have access to the instance"
+  type        = list(any)
+  default     = null
 }
 
 variable "private_subnets" {

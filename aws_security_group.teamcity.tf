@@ -8,35 +8,35 @@ resource "aws_security_group" "teamcity" {
     from_port   = 9090
     to_port     = 9090
     protocol    = "tcp"
-    description = "Agent port"
+    description = "Build Agent port"
     # tfsec:ignore:AWS008
-    cidr_blocks = var.instance_allowlist
+    cidr_blocks = var.instance_cidr_allowlist
   }
 
   ingress {
     from_port       = 8111
     to_port         = 8111
     protocol        = "tcp"
-    description     = "ui"
-    security_groups = [aws_security_group.alb.id]
+    description     = "Ingress to port 8111"
+    security_groups = flatten(var.instance_sg_allowlist, [aws_security_group.alb.id])
     # tfsec:ignore:AWS008
-    cidr_blocks = var.instance_allowlist
+    cidr_blocks = var.instance_cidr_allowlist
   }
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    description = "SSH"
+    description = "Allow SSH to instance"
     # tfsec:ignore:AWS008
-    cidr_blocks = var.instance_allowlist
+    cidr_blocks = var.instance_cidr_allowlist
   }
 
   ingress {
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    description = "Allows traffic to those under group"
+    description = "Allows traffic to self"
     self        = true
   }
 
