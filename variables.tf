@@ -8,6 +8,11 @@ variable "ami_id" {
   }
 }
 
+variable "server_fqdn" {
+  type        = string
+  description = "TeamCity server FQDN"
+}
+
 variable "instance_type" {
   type        = string
   description = "THe instance type"
