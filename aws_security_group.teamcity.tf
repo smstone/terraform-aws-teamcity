@@ -18,7 +18,7 @@ resource "aws_security_group" "teamcity" {
     to_port         = 8111
     protocol        = "tcp"
     description     = "Ingress to port 8111"
-    security_groups = flatten(var.instance_sg_allowlist, [aws_security_group.alb.id])
+    security_groups = concat(var.instance_sg_allowlist, [aws_security_group.alb.id])
     # tfsec:ignore:AWS008
     cidr_blocks = var.instance_cidr_allowlist
   }
