@@ -29,6 +29,7 @@ resource "aws_security_group" "teamcity" {
     protocol    = "tcp"
     description = "Allow SSH to instance"
     # tfsec:ignore:AWS008
+    security_groups = var.instance_sg_allowlist
     cidr_blocks = var.instance_cidr_allowlist
   }
 
