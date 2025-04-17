@@ -1,24 +1,6 @@
 resource "aws_iam_role" "teamcity-server" {
   name = "teamcity-server-role"
   description        = "TeamCity server IAM role, allows EC2 instances to call AWS services on your behalf."
-
-  dynamic "inline_policy" {
-    for_each = zipmap([for idx, arn in var.server_assume_role_arns : idx], var.server_assume_role_arns)
-    content {
-      name   = "inline-policy-${each.key}"
-      policy = jsonencode({
-        Version = "2012-10-17"
-        Statement = [
-          {
-            Action   = "sts:AssumeRole"
-            Effect   = "Allow"
-            Resource = each.value
-          }
-        ]
-      })
-    }
-  }
-
   assume_role_policy = <<HERE
 {
   "Version": "2012-10-17",
@@ -33,6 +15,23 @@ resource "aws_iam_role" "teamcity-server" {
   ]
 }
 HERE
+}
+
+resource "aws_iam_role_policy" "inline_assume_policy" {
+  count = var.server_assume_role_arn == null ? 0 : 1
+  name = "inline-assume-policy"
+  role = aws_iam_role.teamcity-server.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action   = "sts:AssumeRole"
+        Effect   = "Allow"
+        Resource = var.server_assume_role_arn
+      }
+    ]
+  })
 }
 
 resource "aws_iam_instance_profile" "teamcity" {

@@ -134,8 +134,8 @@ variable "alb_acm_arn" {
   description = "ALB ACM ARN"
 }
 
-variable "server_assume_role_arns" {
-  type = list(any)
+variable "server_assume_role_arn" {
+  type = string
   default = null
-  description = "Role ARNs to assume as."
+  description = "Role ARN to assume as."
 }
