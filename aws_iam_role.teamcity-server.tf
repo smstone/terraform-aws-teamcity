@@ -20,7 +20,7 @@ HERE
 resource "aws_iam_role_policy" "inline_assume_policy" {
   count = var.server_assume_role_arn == null ? 0 : 1
   name = "inline-assume-policy"
-  role = aws_iam_role.teamcity-server.name
+  role = aws_iam_role.teamcity-server.id
 
   policy = jsonencode({
     Version = "2012-10-17"
