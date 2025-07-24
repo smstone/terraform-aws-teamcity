@@ -4,7 +4,7 @@ resource "aws_iam_role" "teamcity-server" {
 
   inline_policy {
     name   = "teamcity-server-inline-policy"
-    policy = var.iam_role_inline_policy
+    policy = file(var.iam_role_inline_policy)
   }
 
   assume_role_policy = <<HERE
