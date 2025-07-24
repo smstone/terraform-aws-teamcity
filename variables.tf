@@ -133,3 +133,8 @@ variable "alb_acm_arn" {
   type        = string
   description = "ALB ACM ARN"
 }
+
+variable "iam_role_inline_policy" {
+  type        = string
+  description = "Inline policy for iam role."
+}
